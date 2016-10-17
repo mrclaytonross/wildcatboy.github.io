@@ -59,11 +59,54 @@ duck.friends = friends;
 
 function search(animalName){
     for (var i = 0; i < animals.length - 1; i++){
-        console.log(i);
         if (animalName == animals[i].name){
             return animals[i];
         } 
     } return null;
 }
     
-console.log(search("Jerome"));
+//console.log(search("Jerome"));
+
+function edit(animalName, object){
+     for (var i = 0; i < animals.length - 1; i++){
+        if (animalName === animals[i].name){
+            console.log(animals[i].name);
+            animals[i] = object;
+            //console.log(animals[i])
+        } 
+    } 
+}
+
+//edit("Jerome", {species : "duck", name : "mr. quackers", noise : "cookaroo"});
+
+//console.log(animals[1]);
+
+function remove(animalName){
+     for (var i = 0; i < animals.length - 1; i++){
+        if (animalName === animals[i].name){
+            //console.log(animals[i].name);
+            animals.splice(i, 1);
+            //console.log(animals[i])
+        } 
+    } 
+}
+
+
+
+//remove("Hal");
+//console.log(animals);
+
+
+function create(objet){
+    if(objet.name.length > 0 && objet.species.length > 0){
+        for (var i = 0; i < animals.length; i++){
+        if (objet.name == animals[i].name){
+            return }
+            }
+        } debugger; animals.push(objet);
+    }
+
+
+create({species : "duck", name : "mr. quackers", noise : "cookaroo"});
+
+console.log(animals);
