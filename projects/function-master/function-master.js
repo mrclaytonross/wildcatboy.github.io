@@ -79,6 +79,14 @@ var objectValues = function (objet){
     //   assert.equal(capitalizeWord("quattuordecillion"), "Quattuordecillion");
     // });   
     
+     function capitalizeWord(aString){
+       //  console.log("anything");
+       return (aString.charAt(0).toUpperCase() + aString.slice(1, aString.length))
+       
+       
+       
+        }    
+        
     
     
     
@@ -88,8 +96,15 @@ var objectValues = function (objet){
     //   assert.equal(capitalizeAllWords("please excuse my dear aunt sally"), "Please Excuse My Dear Aunt Sally");
     // });
     
-    
-    
+     function capitalizeAllWords(allString){
+       var anArray = allString.split(" ")
+       for(var i = 0; i < anArray.length; i++){
+       anArray[i] = anArray[i].charAt(0).toUpperCase() + anArray[i].slice(1);
+       } 
+       return anArray.join(" ");
+}
+
+//console.log(capitalizeAllWord("hi everybody"));
 
     // /* global  welcomeMessage*/
     // QUnit.test("welcomeMessage() : Should take an object with a name property and return 'Welcome <Name>!'", function(assert){
@@ -97,6 +112,10 @@ var objectValues = function (objet){
     //   assert.equal(welcomeMessage({name: "Charlie"}), "Welcome Charlie!");
     // });
 
+    function welcomeMessage(objet){
+        
+        return "Welcome " + capitalizeWord(objet.name) + "!";
+    }
 
 
 
@@ -106,7 +125,9 @@ var objectValues = function (objet){
     //   assert.equal(profileInfo({name: "reggie", species: "dog"}), "Reggie is a Dog");
     // });
 
-
+    function profileInfo(objet){
+        return capitalizeWord(objet.name) + " is a " + capitalizeWord(objet.species);
+    }
 
 
 
@@ -117,7 +138,14 @@ var objectValues = function (objet){
     //   assert.equal(maybeNoises({}), "there are no noises");
     // });
 
-
+    function maybeNoises(objet){
+        if (objet.noises && objet.noises.length >= 1){
+            return objet.noises.join(" ");
+        } else {
+            return "there are no noises"
+        }
+        
+    }
 
 
 
@@ -129,7 +157,14 @@ var objectValues = function (objet){
     //   assert.strictEqual(hasWord(data, "turtle"), false);
     // });
 
-
+    function hasWord(stringy, wordy){
+        var x = stringy.search(wordy)
+        if(x >= 1){
+        return true;
+        } else {
+            return false;
+        }
+    }
 
 
 
@@ -140,6 +175,11 @@ var objectValues = function (objet){
     // });
     
     
+    function addFriend(name, array){
+        array.friends.push(name);
+        return array;
+    }
+    
     
 
     // /* global isFriend */
@@ -149,6 +189,36 @@ var objectValues = function (objet){
     //   assert.equal(isFriend("chuck",{}), false);
     // });
 
+    function isFriend(name, object){
+        if (object.friends=== undefined){
+            return false;
+        } else {
+        for (var i = 0; i < object.friends.length; i++){
+        if (object.friends[i] === name){
+            return true;
+        }   
+        } return false;
+    }
+    }
+    
+
+
+    // function isFriend(name, objet){
+    // var i = 0;
+    // function isFriend2(){
+    // if (i > objet.friends.length){
+    //     return false;
+    // } else if (name === objet.friends[i]){
+    //     return true;
+    // } else {
+    //     i++;
+    //     return isFriend2();
+    // }
+    // } return;
+    // }
+    
+    
+    
 
 
 
@@ -165,11 +235,62 @@ var objectValues = function (objet){
     //   assert.deepEqual(nonFriends("Sara", data), ["Bob","Liza"]);
     // });
 
+    function nonFriends(name, peopleList){
+        var allFriends = [];
+        var allOtherFriends = [];
+        var myFriends = [];
+        var notFriends = [];
+        // loop that gathers allFriends
+        allFriends = peopleList.map(function(peopleList){
+            return peopleList.name;
+        });
+        //subtract <name> from allFriends
+             for (var i = 0; i < allFriends.length; i++){
+                 if (allFriends[i] !== name){
+                     allOtherFriends.push(allFriends[i]);
+                     }
+             }
+        // // populate myFriends with <name> friends
+         for (var index = 0; index < peopleList.length; index++){
+          if (peopleList[index].name === name){
+            myFriends = peopleList[index].friends;
+          }
+        }
+        // compare 2 lists and push missing friends to notFriends
+        myFriends = myFriends.toString();
+            //console.log(myFriends);
+         for (var indexx = 0; indexx < allFriends.length; indexx++){
+             console.log(myFriends.search(allFriends[indexx]));
+             if (myFriends.search(allFriends[indexx]) < 0 && allFriends[indexx] !== name){
+                 notFriends.push(allFriends[indexx]);
+             } 
+        }  return notFriends;
+        
+        }
+        
+        
+    
+        
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     // /* global updateObject */
-    // QUnit.test("updateObject() : Should take an object, a key and a value. Should update the property <key> on <object> with new <value>. If <key> does not exist on <object> create it.", function(assert){
+    // QUnit.test("updateObject() : Should take an object, a key and a value. Should update the property <key> on <object> with new <value>.
+    //  If <key> does not exist on <object> create it.", function(assert){
+    
+    
     //   var data = {a: "one", b: "two", "hokey": false};
     //   assert.deepEqual(updateObject(data, "b", "three"), {a:"one", b:"three", hokey: false});
     //   var data = {a: "one", b: "two", "hokey": false};
@@ -178,31 +299,42 @@ var objectValues = function (objet){
     //   assert.deepEqual(updateObject(data, "a", Infinity), {a:Infinity, b:"two", hokey: false});
     // });
 
-
+function updateObject(object, key, value){
+   object[key] = value;
+   return object;
+}
 
 
     // /* global removeProperties */
-    // QUnit.test("removeProperties() : Should take an object and an array of strings. Should remove any properties on <object> that are listed in <array>", function(assert){
+    // QUnit.test("removeProperties() : Should take an object and an array of strings. 
+    //Should remove any properties on <object> that are listed in <array>", 
+    
+    
+    //function(assert){
     //   var data = {a: "one", b: "two", "hokey": false};
     //   removeProperties(data, ["a","hokey"]);
     //   assert.deepEqual(data, {b: "two"});
-
-
-
 
     //   var data = {a: "one", b: "two", "hokey": false};
     //   removeProperties(data, ["b"])
     //   assert.deepEqual(data, {a: "one", "hokey": false});
 
-
-
-
     //   var data = {a: "one", b: "two", hokey: false};
     //   removeProperties(data, []);
     //   assert.deepEqual(data, {a: "one", b: "two", "hokey": false});
     // });
+    
+    function removeProperties(object, array){
+        for (var i = 0; i < array.length; i++){
+            delete object[array[i]];
+        }    
+
+    }
+    
 
 
+
+   
 
 
     // /* global dedup */
@@ -213,3 +345,20 @@ var objectValues = function (objet){
 
     //   assert.deepEqual( dedup(data), [1,2,3,4,5,"a","b","c"]);
     // });
+    
+    function dedup (array){
+        var duplArray = []
+        for (var i = 0; i < array.length; i++){
+        if(i === 0){
+            duplArray.push(array[i]);
+            console.log(duplArray);
+        } else if (i === array.length - 1){
+            duplArray.push(array[i]); 
+        } else if (array[i] !== array[i+1]){
+            duplArray.push(array[i]);
+        }
+        } return duplArray;
+        
+    }
+    
+    
