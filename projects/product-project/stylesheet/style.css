@@ -4,14 +4,21 @@ body {
     border-style: dotted;
 }
 
-div {
-    position: static;
-    width: 33.33%;
-    display: inline-block;
-    vertical-align: top;
-    /*padding-left: 15px;*/
-    /*padding-right: 15px;*/
-}    
+.allPhones {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 10px;
+}
+
+/*div {*/
+/*    position: static;*/
+/*    width: 33.33%;*/
+/*    display: inline-block;*/
+/*    vertical-align: top;*/
+/*    padding-left: 15px;*/
+/*    padding-right: 15px;*/
+/*}    */
 
 
 .highlighted {
@@ -28,3 +35,4 @@ div {
   height: 50px;
     
 }
+

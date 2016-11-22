@@ -58,7 +58,7 @@ duck.friends = friends;
 //console.log(duck);
 
 function search(animalName){
-    for (var i = 0; i < animals.length - 1; i++){
+    for (var i = 0; i < animals.length; i++){
         if (animalName == animals[i].name){
             return animals[i];
         } 
@@ -84,9 +84,7 @@ function edit(animalName, object){
 function remove(animalName){
      for (var i = 0; i < animals.length - 1; i++){
         if (animalName === animals[i].name){
-            //console.log(animals[i].name);
             animals.splice(i, 1);
-            //console.log(animals[i])
         } 
     } 
 }
@@ -103,7 +101,9 @@ function create(objet){
         if (objet.name == animals[i].name){
             return }
             }
-        } debugger; animals.push(objet);
+            animals.push(objet);
+        }  
+    
     }
 
 
